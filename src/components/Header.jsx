@@ -1,4 +1,5 @@
 import { Cart } from "./Cart";
+
 export function Header() {
   return (
     <div className="flex h-20 w-full p-4 items-center justify-between shadow-[0_7px_29px_0px_rgba(100,100,111,0.2)]">
