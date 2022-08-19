@@ -1,7 +1,6 @@
-import styles from "./Footer.module.css";
 export function Footer() {
   return (
-    <div className={styles.container}>
+    <div className="flex w-full bg-lime-300">
       <span>Cristian Prieto 2022, España.</span>
     </div>
   );
