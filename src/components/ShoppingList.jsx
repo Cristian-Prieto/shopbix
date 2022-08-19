@@ -22,17 +22,18 @@ export function ShoppingList() {
 
   const nextPage = () => {
     setCurrentPageUrl(
-      `https://api.escuelajs.co/api/v1/products?offset=${offset + ITEMS_PER_PAGE}&limit=${ITEMS_PER_PAGE}`
+      `https://api.escuelajs.co/api/v1/products?offset=${
+        offset + ITEMS_PER_PAGE
+      }&limit=${ITEMS_PER_PAGE}`
     );
     setOffset(offset + ITEMS_PER_PAGE);
   };
 
   const previousPage = () => {
-    // if (!offset) {
-    //   return;
-    // }
     setCurrentPageUrl(
-      `https://api.escuelajs.co/api/v1/products?offset=${offset - ITEMS_PER_PAGE}&limit=${ITEMS_PER_PAGE}`
+      `https://api.escuelajs.co/api/v1/products?offset=${
+        offset - ITEMS_PER_PAGE
+      }&limit=${ITEMS_PER_PAGE}`
     );
     setOffset(offset - ITEMS_PER_PAGE);
   };

@@ -4,11 +4,16 @@ export const Product = ({ product }) => {
   const { addProductToCart } = useAppContext();
 
   return (
-    <li key={product.id} className="flex flex-col shadow-lg hover:shadow-xl transition rounded-lg bg-white">
+    <li
+      key={product.id}
+      className="flex flex-col shadow-lg hover:shadow-xl transition rounded-lg bg-white"
+    >
       <div className="h-96 rounded-t-lg overflow-hidden bg-gray-100">
         <img
           src={
-            product.images.length && product.images[0] ? product.images[0] : "https://via.placeholder.com/150"
+            product.images.length && product.images[0]
+              ? product.images[0]
+              : "https://via.placeholder.com/150"
           }
           alt={product.title}
           className="w-full h-full object-center object-cover"

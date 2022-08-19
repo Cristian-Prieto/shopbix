@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 const INITIAL_CONTEXT = {
   cart: [],
@@ -15,7 +15,20 @@ const AppContextComponent = ({ children }) => {
       ...prevState,
       cart: [...prevState.cart, product],
     }));
+    console.log(product);
   };
+
+  const removeProductFromCart = (product) => {
+    setState((prevState) => ({
+      ...prevState,
+      cart: [
+        ...prevState.cart.filter(
+          (cartItem) => product.title !== cartItem.title
+        ),
+      ],
+    }));
+  };
+  console.log(state);
 
   return (
     <AppContext.Provider
@@ -23,6 +36,7 @@ const AppContextComponent = ({ children }) => {
         cart: state.cart,
         user: state.user,
         addProductToCart,
+        removeProductFromCart,
       }}
     >
       {children}
