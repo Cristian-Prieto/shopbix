@@ -20,10 +20,13 @@ export const Product = ({ product }) => {
           className="w-full h-full object-center object-cover"
         />
       </div>
-      <div className="flex flex-1 flex-col items-center p-4">
-        <h3 className="mb-4 font-medium text-gray-900">{product.title}</h3>
-        <p className="text-gray-500 text-center">{product.description}</p>
-        <p className="mt-2 mb-8 font-medium text-gray-900">${product.price}</p>
+      <div className="flex flex-1 flex-col items-center justify-center p-4">
+        <div className="flex flex-1 flex-col items-center  p-4">
+          <h3 className="font-bold  mb-4  text-gray-900">{product.title}</h3>
+          <p className="text-gray-500 text-center">{product.description}</p>
+        </div>
+
+        <span className="mt-2 mb-8 text-gray-900">${product.price}</span>
         {alreadyExist ? (
           <div className="flex gap-8">
             <button
