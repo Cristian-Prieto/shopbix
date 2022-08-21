@@ -24,18 +24,17 @@ export const Product = ({ product }) => {
         <h3 className="mb-4 font-medium text-gray-900">{product.title}</h3>
         <p className="text-gray-500 text-center">{product.description}</p>
         <p className="mt-2 mb-8 font-medium text-gray-900">${product.price}</p>
-
         {alreadyExist ? (
-          <div>
+          <div className="flex gap-8">
             <button
               onClick={() => removeProductFromCart(alreadyExist)}
-              className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white"
+              className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-red-600 hover:text-gray-100 disabled:opacity-30 disabled:hover:bg-white"
             >
               - 1
             </button>
             <button
               onClick={() => addProductToCart(product)}
-              className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white"
+              className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-green-400 hover:text-gray-100 disabled:opacity-30 disabled:hover:bg-white"
             >
               + 1
             </button>
