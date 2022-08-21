@@ -22,8 +22,10 @@ export const Product = ({ product }) => {
       </div>
       <div className="flex flex-1 flex-col items-center justify-center p-4">
         <div className="flex flex-1 flex-col items-center  p-4">
-          <h3 className="font-bold  mb-4  text-gray-900">{product.title}</h3>
-          <p className="text-gray-500 text-center">{product.description}</p>
+          <h3 className="font-bold text-lg mb-4  text-gray-900">
+            {product.title}
+          </h3>
+          <p className=" text-center text-gray-500">{product.description}</p>
         </div>
 
         <span className="mt-2 mb-8 text-gray-900">${product.price}</span>

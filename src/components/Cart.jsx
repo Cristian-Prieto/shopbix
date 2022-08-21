@@ -58,7 +58,7 @@ export function Cart() {
                       {item.count}
                     </span>
                     <button onClick={() => addProductToCart(item.product)}>
-                      <AiOutlinePlusCircle className="h-6 w-6 " />
+                      <AiOutlinePlusCircle className="h-6 w-6 hover:drop-shadow-md" />
                     </button>
                   </div>
                 </li>
