@@ -11,24 +11,45 @@ const AppContextComponent = ({ children }) => {
   const [state, setState] = useState(INITIAL_CONTEXT);
 
   const addProductToCart = (product) => {
-    setState((prevState) => ({
-      ...prevState,
-      cart: [...prevState.cart, product],
-    }));
-    console.log(product);
+    setState((prevState) => {
+      const alreadyExist = prevState.cart.find(
+        (item) => item.product.id === product.id
+      );
+      if (alreadyExist) {
+        return {
+          ...prevState,
+          cart: prevState.cart.map((item) => {
+            if (item.product.id === product.id) {
+              return { ...item, count: item.count + 1 };
+            }
+            return item;
+          }),
+        };
+      }
+      return { ...prevState, cart: [...prevState.cart, { count: 1, product }] };
+    });
   };
 
-  const removeProductFromCart = (product) => {
-    setState((prevState) => ({
-      ...prevState,
-      cart: [
-        ...prevState.cart.filter(
-          (cartItem) => product.title !== cartItem.title
-        ),
-      ],
-    }));
+  const removeProductFromCart = (cartItem) => {
+    setState((prevState) => {
+      if (cartItem.count === 1) {
+        return {
+          ...prevState,
+          cart: prevState.cart.filter(
+            (item) => item.product.id !== cartItem.product.id
+          ),
+        };
+      }
+      return {
+        ...prevState,
+        cart: prevState.cart.map((item) => {
+          if (item.product.id === cartItem.product.id)
+            return { ...item, count: item.count - 1 };
+          return item;
+        }),
+      };
+    });
   };
-  console.log(state);
 
   return (
     <AppContext.Provider

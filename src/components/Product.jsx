@@ -1,7 +1,8 @@
 import { useAppContext } from "../hooks/useAppContext";
 
 export const Product = ({ product }) => {
-  const { addProductToCart } = useAppContext();
+  const { removeProductFromCart, addProductToCart, cart } = useAppContext();
+  const alreadyExist = cart.find((item) => item.product.id === product.id);
 
   return (
     <li
@@ -23,12 +24,30 @@ export const Product = ({ product }) => {
         <h3 className="mb-4 font-medium text-gray-900">{product.title}</h3>
         <p className="text-gray-500 text-center">{product.description}</p>
         <p className="mt-2 mb-8 font-medium text-gray-900">${product.price}</p>
-        <button
-          onClick={() => addProductToCart(product)}
-          className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white"
-        >
-          Add to cart
-        </button>
+
+        {alreadyExist ? (
+          <div>
+            <button
+              onClick={() => removeProductFromCart(alreadyExist)}
+              className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white"
+            >
+              - 1
+            </button>
+            <button
+              onClick={() => addProductToCart(product)}
+              className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white"
+            >
+              + 1
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => addProductToCart(product)}
+            className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white"
+          >
+            Add to cart
+          </button>
+        )}
       </div>
     </li>
   );

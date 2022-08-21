@@ -1,4 +1,9 @@
-export function Pagination({ currentPage, isFirstPage, previousPage, nextPage }) {
+export function Pagination({
+  currentPage,
+  isFirstPage,
+  previousPage,
+  nextPage,
+}) {
   return (
     <div className="flex-1 flex justify-center items-center gap-4 mt-4">
       <button
@@ -8,7 +13,7 @@ export function Pagination({ currentPage, isFirstPage, previousPage, nextPage })
       >
         prev
       </button>
-      <span>[Page: {currentPage}]</span>
+      <span>Page {currentPage}</span>
       <button
         onClick={nextPage}
         className="px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300"
