@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Gallery } from "./Gallery";
 export function ProductDetail() {
   const [productInfo, setProductInfo] = useState();
   const { id } = useParams();
@@ -16,117 +17,19 @@ export function ProductDetail() {
 
   return (
     productInfo && (
-      <>
-        <span className="">{productInfo.title}</span>
-
-        <div className="flex flex-col  md:flex-row">
-          <section className="flex md:flex-col">
-            <div className="flex  place-content-center">
-              <img
-                src={
-                  !productInfo.images.length
-                    ? "https://via.placeholder.com/150"
-                    : productInfo.images[0]
-                }
-                alt={productInfo.title}
-                className="flex-1 md:object-contain object-cover"
-              />
-            </div>
-            <div className="flex  md:flex-col place-content-center ">
-              <img
-                src={
-                  !productInfo.images.length
-                    ? "https://via.placeholder.com/150"
-                    : productInfo.images[1]
-                }
-                alt={productInfo.title}
-                className="flex-1 md:object-contain object-cover"
-              />
-            </div>
-            <div className="flex  md:flex-col place-content-center ">
-              <img
-                src={
-                  !productInfo.images.length
-                    ? "https://via.placeholder.com/150"
-                    : productInfo.images[2]
-                }
-                alt={productInfo.title}
-                className="flex-1 md:object-contain object-cover "
-              />
-            </div>
-          </section>
-          <section>
-            <div className="flex place-content-center">
-              <img
-                src={
-                  !productInfo.images.length
-                    ? "https://via.placeholder.com/450"
-                    : productInfo.images[0]
-                }
-                alt={productInfo.title}
-                className="flex-1 object-cover "
-              />
-            </div>
-          </section>
-        </div>
-        <p>{productInfo.description}</p>
-        <span>${productInfo.price}</span>
-
-        {/* <div className="flex w-full bg-red-600">
-          <div className="flex flex-col w-full md:flex-row ">
-            <div className="flex flex-col md:flex-row ">
-              <div className="flex justify-center md:flex-col h-20 md:w-40 md:h-full sm:h-full">
-                <div className="flex  place-content-center">
-                  <img
-                    src={
-                      !productInfo.images.length
-                        ? "https://via.placeholder.com/150"
-                        : productInfo.images[0]
-                    }
-                    alt={productInfo.title}
-                    className="flex-1 md:object-contain object-cover"
-                  />
-                </div>
-                <div className="flex  md:flex-col place-content-center ">
-                  <img
-                    src={
-                      !productInfo.images.length
-                        ? "https://via.placeholder.com/150"
-                        : productInfo.images[1]
-                    }
-                    alt={productInfo.title}
-                    className="flex-1 md:object-contain object-cover"
-                  />
-                </div>
-                <div className="flex  md:flex-col place-content-center ">
-                  <img
-                    src={
-                      !productInfo.images.length
-                        ? "https://via.placeholder.com/150"
-                        : productInfo.images[2]
-                    }
-                    alt={productInfo.title}
-                    className="flex-1 md:object-contain object-cover "
-                  />
-                </div>
-              </div>
-              <div className="flex place-content-center">
-                <img
-                  src={
-                    !productInfo.images.length
-                      ? "https://via.placeholder.com/450"
-                      : productInfo.images[0]
-                  }
-                  alt={productInfo.title}
-                  className="flex-1 object-cover "
-                />
-              </div>
-            </div>
+      <div className="container mx-auto">
+        <h2 className="md:hidden font-poppins font-bold text-3xl w-full text-center my-8">
+          {productInfo.title}
+        </h2>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[500px_1fr] md:p-16 ">
+          <Gallery images={productInfo.images} />
+          <div className="px-8 py-4">
+            <h2 className="hidden md:block  font-poppins font-bold text-2xl">{productInfo.title}</h2>
+            <p>{productInfo.description}</p>
+            <span>${productInfo.price}</span>
           </div>
         </div>
-        <p>{productInfo.description}</p>
-        <span>${productInfo.price}</span> */}
-      </>
+      </div>
     )
   );
 }
