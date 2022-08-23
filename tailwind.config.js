@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       "suez-one": ["Suez One"],
+      poppins: ["Poppins"],
     },
     extend: {},
   },

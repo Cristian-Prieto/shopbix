@@ -30,7 +30,7 @@ export function Cart() {
       {isCartOpen && (
         <>
           <div
-            className="fixed top-0 left-0 w-screen h-screen "
+            className="fixed top-0 left-0 w-screen h-screen"
             onClick={() => setIsCartOpen(false)}
           />
           {cart.length > 0 ? (
@@ -38,7 +38,7 @@ export function Cart() {
               {cart.map((item) => (
                 <li
                   key={item.product.id}
-                  className="flex justify-between place-items-center  p-4 w-full py-2   hover:backdrop-blur-sm "
+                  className="flex justify-between place-items-center  p-4 w-full py-2 bg-white/0 hover:bg-white/10 transition duration-300"
                 >
                   <span className="flex text-lg text-neutral-800">
                     {item.product.title}
@@ -46,11 +46,11 @@ export function Cart() {
                   <div className="flex place-items-center justify-around align-middle  gap-x-2 w-28 h-12">
                     {item.count === 1 ? (
                       <button onClick={() => removeProductFromCart(item)}>
-                        <BsFillTrashFill className=" h-6 w-6" />
+                        <BsFillTrashFill className="h-6 w-6 hover:drop-shadow-md" />
                       </button>
                     ) : (
                       <button onClick={() => removeProductFromCart(item)}>
-                        <AiOutlineMinusCircle className=" h-6 w-6" />
+                        <AiOutlineMinusCircle className="h-6 w-6 hover:drop-shadow-md" />
                       </button>
                     )}
 

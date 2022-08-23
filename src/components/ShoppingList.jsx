@@ -26,6 +26,7 @@ export function ShoppingList() {
         offset + ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );
+
     setOffset(offset + ITEMS_PER_PAGE);
   };
 
@@ -35,6 +36,7 @@ export function ShoppingList() {
         offset - ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );
+
     setOffset(offset - ITEMS_PER_PAGE);
   };
 
@@ -43,15 +45,18 @@ export function ShoppingList() {
       <Pagination
         currentPage={offset / ITEMS_PER_PAGE + 1}
         isFirstPage={offset === 0}
+        isLastPage={!productsList.length}
         nextPage={nextPage}
         previousPage={previousPage}
       />
-      {productsList.length > 0 && (
+      {productsList.length > 0 ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-4 gap-8 w-full list-none">
           {productsList.map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </ul>
+      ) : (
+        <div className="flex-1 "></div>
       )}
     </>
   );
