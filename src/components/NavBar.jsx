@@ -1,7 +1,6 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { Location } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 export function NavBar() {
-  const location = useLocation();
   return (
     <nav className="font-semibold space-x-8">
       <NavLink
