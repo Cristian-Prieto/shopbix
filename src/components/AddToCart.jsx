@@ -1,10 +1,10 @@
 import { useAppContext } from "../hooks/useAppContext";
-export function AddToCart(product) {
+export function AddToCart({ product }) {
   const { removeProductFromCart, addProductToCart, cart } = useAppContext();
   const productInCart = cart.find((item) => item.product.id === product.id);
 
   return (
-    <>
+    <div className="flex place-content-center">
       {productInCart ? (
         <div className="flex items-center gap-4">
           <button
@@ -31,6 +31,6 @@ export function AddToCart(product) {
           Add to cart
         </button>
       )}
-    </>
+    </div>
   );
 }

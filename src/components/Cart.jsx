@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "../hooks/useAppContext";
-import { BsFillCartFill, BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill } from "react-icons/bs";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { BsFillCartFill } from "react-icons/bs";
 
 export function Cart() {
   const { cart, removeProductFromCart, addProductToCart } = useAppContext();
@@ -25,7 +26,19 @@ export function Cart() {
         className="flex relative place-items-center justify-center align-middle gap-2 z-10"
         onClick={() => setIsCartOpen((prevState) => !prevState)}
       >
-        ({cart.length}) <BsFillCartFill className=" h-6 w-6" />
+        <div className="flex place-content-center bg-yellow-300 rounded-full w-12 px-4 py-1">
+          {/* {cart.length} */}
+          {cart.reduce(
+            (accumulator, totalProducts) => accumulator + totalProducts.count,
+            0
+          )}
+
+          {/* const totalItems = list.reduce(
+    (accumulator, currentNumber) => accumulator + currentNumber.total,
+    0
+  ); */}
+        </div>
+        <BsFillCartFill className=" h-6 w-6" />
       </button>
       {isCartOpen && (
         <>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { saveToLocalStorage, getCartFromLocalStorage } from "../utils/utils";
 
 export const INITIAL_CONTEXT = {
@@ -10,6 +10,10 @@ export const AppContext = createContext();
 
 const AppContextComponent = ({ children }) => {
   const [state, setState] = useState(getCartFromLocalStorage());
+
+  useEffect(() => {
+    saveToLocalStorage(state);
+  }, [state]);
 
   const addProductToCart = (product) => {
     setState((prevState) => {
@@ -29,7 +33,6 @@ const AppContextComponent = ({ children }) => {
       }
       return { ...prevState, cart: [...prevState.cart, { count: 1, product }] };
     });
-    saveToLocalStorage(state);
   };
 
   const removeProductFromCart = (cartItem) => {
@@ -51,7 +54,6 @@ const AppContextComponent = ({ children }) => {
         }),
       };
     });
-    saveToLocalStorage(state);
   };
 
   return (
