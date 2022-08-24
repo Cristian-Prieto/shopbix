@@ -6,7 +6,7 @@ export function Pagination({
   isLastPage,
 }) {
   return (
-    <div className=" flex justify-between items-center w-60 gap-4 mt-4">
+    <div className=" flex justify-between items-center w-60 gap-4 my-12">
       <button
         disabled={isFirstPage}
         onClick={previousPage}

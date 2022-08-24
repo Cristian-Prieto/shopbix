@@ -58,6 +58,13 @@ export function ShoppingList() {
       ) : (
         <div className="flex-1 "></div>
       )}
+      <Pagination
+        currentPage={offset / ITEMS_PER_PAGE + 1}
+        isFirstPage={offset === 0}
+        isLastPage={!productsList.length}
+        nextPage={nextPage}
+        previousPage={previousPage}
+      />
     </>
   );
 }
