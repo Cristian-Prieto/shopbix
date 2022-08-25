@@ -10,7 +10,6 @@ export function ShoppingList() {
   const [currentPageUrl, setCurrentPageUrl] = useState(
     `https://fake-api-shopping-backend.onrender.com/api/v1/products?offset=${offset}&limit=10`
   );
-  // https://fake-api-shopping-backend.onrender.com/api/v1/products
 
   useEffect(() => {
     fetch(currentPageUrl)
@@ -23,7 +22,7 @@ export function ShoppingList() {
 
   const nextPage = () => {
     setCurrentPageUrl(
-      `https://api.escuelajs.co/api/v1/products?offset=${
+      `https://fake-api-shopping-backend.onrender.com/api/v1/products?offset=${
         offset + ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );
@@ -33,7 +32,7 @@ export function ShoppingList() {
 
   const previousPage = () => {
     setCurrentPageUrl(
-      `https://api.escuelajs.co/api/v1/products?offset=${
+      `https://fake-api-shopping-backend.onrender.com/api/v1/products?offset=${
         offset - ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );

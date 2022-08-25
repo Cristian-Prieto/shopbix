@@ -1,6 +1,6 @@
 export function Home() {
   return (
-    <div className="h-[calc(100vh-9rem)] w-screen relative overflow-hidden bg-green-500">
+    <div className="h-[calc(100vh-9rem)] w-screen relative overflow-hidden">
       <div className="absolute inset-0 ">
         <img
           src="/images/background.jpg"
