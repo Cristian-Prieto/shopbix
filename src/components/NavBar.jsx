@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export function NavBar() {
   return (
-    <nav className="font-semibold space-x-8">
+    <nav className="flex justify-center font-semibold space-x-4">
       <NavLink
         className={({ isActive }) =>
           isActive

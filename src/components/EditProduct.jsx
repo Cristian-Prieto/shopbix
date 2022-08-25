@@ -38,7 +38,7 @@ export function EditProduct() {
     <div className="flex flex-col flex-1 align-middle justify-center">
       <form
         onSubmit={addNewProduct}
-        className="flex flex-col w-96 p-8 shadow-lg hover:shadow-xl transition rounded-lg bg-white"
+        className="flex flex-col w-96 p-8 shadow-lg rounded-lg bg-white"
       >
         <label className="flex flex-col">
           Title
