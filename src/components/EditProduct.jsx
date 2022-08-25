@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { InputText } from "./InputText";
+// import { InputText } from "./InputText";
 
 export function EditProduct() {
   const INITIAL_PRODUCT = {
     title: "",
-    price: 0,
+    price: 1,
     description: "",
     categoryId: 1,
     images: ["https://placeimg.com/640/480/any"],
@@ -35,33 +35,41 @@ export function EditProduct() {
   };
 
   return (
-    <>
-      <form onSubmit={addNewProduct}>
-        <label>
+    <div className="flex flex-col flex-1 align-middle justify-center">
+      <form
+        onSubmit={addNewProduct}
+        className="flex flex-col w-96 p-8 shadow-lg hover:shadow-xl transition rounded-lg bg-white"
+      >
+        <label className="flex flex-col">
           Title
-          <InputText
+          <input
             type="text"
             name="title"
             value={newProduct.title}
             onChange={handleInputChange}
+            className="border-black rounded-md focus:border-yellow-400 focus:ring-yellow-400 "
           />
         </label>
-        <label>
+        <label className="flex flex-col">
           Price
-          <InputText
+          <input
             type="number"
+            min={1}
             name="price"
             value={newProduct.price}
             onChange={handleInputChange}
+            className="rounded-md focus:border-yellow-400 focus:ring-yellow-400 invalid:border-red-500"
           />
         </label>
-        <label>
+        <label className="flex flex-col">
           Description
-          <InputText
+          <textarea
             type="text"
+            autoComplete="none"
             name="description"
             value={newProduct.description}
             onChange={handleInputChange}
+            className="rounded-md h-20 break-all focus:border-yellow-400 focus:ring-yellow-400 invalid:border-red-500"
           />
         </label>
         {/* <label>
@@ -73,8 +81,10 @@ export function EditProduct() {
             onChange={handleInputChange}
           />
         </label> */}
-        <button type="submit">New Product</button>
+        <button type="submit" className="p-4">
+          New Product
+        </button>
       </form>
-    </>
+    </div>
   );
 }

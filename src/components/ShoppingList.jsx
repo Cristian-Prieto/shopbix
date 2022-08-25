@@ -8,8 +8,9 @@ export function ShoppingList() {
   const [productsList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
   const [currentPageUrl, setCurrentPageUrl] = useState(
-    `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=10`
+    `https://fake-api-shopping-backend.onrender.com/api/v1/products?offset=${offset}&limit=10`
   );
+  // https://fake-api-shopping-backend.onrender.com/api/v1/products
 
   useEffect(() => {
     fetch(currentPageUrl)
