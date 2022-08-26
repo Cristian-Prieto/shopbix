@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Cart } from "./Cart";
 import { GrMenu, GrClose } from "react-icons/gr";
@@ -8,6 +8,17 @@ export function Header() {
   const toggleMenu = () => {
     setIsOpen((prevState) => !prevState);
   };
+  useEffect(() => {
+    // Blocking scroll when Cart "modal" is open.
+    if (isOpen) {
+      document.body.style = "overflow: hidden;";
+    }
+
+    // Enabling scroll back on clean-up.
+    return () => {
+      document.body.style = "";
+    };
+  }, [isOpen]);
 
   return (
     <>
