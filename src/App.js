@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Home } from "./components/Home";
+import { CartSummary } from "./components/CartSummary";
 import { ProductDetail } from "./components/ProductDetail";
 import { EditProduct } from "./components/EditProduct";
 import { ShoppingList } from "./components/ShoppingList";
@@ -20,6 +21,7 @@ function App() {
               <Route path="/list" element={<ShoppingList />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/edit" element={<EditProduct />} />
+              <Route path="/cart" element={<CartSummary />} />
             </Routes>
           </div>
 

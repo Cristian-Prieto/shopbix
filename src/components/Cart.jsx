@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../hooks/useAppContext";
 import { BsFillTrashFill } from "react-icons/bs";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 
-export function Cart() {
+export function Cart({ toggleMenu }) {
   const { cart, removeProductFromCart, addProductToCart } = useAppContext();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -19,26 +20,36 @@ export function Cart() {
       document.body.style = "";
     };
   }, [isCartOpen]);
+  const renderCartBtn = (isMobile) => {
+    return (
+      <>
+        {!isMobile && (
+          <div className="flex place-content-center bg-yellow-300 rounded-full w-12 px-4 py-1">
+            {/* {cart.length} */}
+            {cart.reduce(
+              (accumulator, totalProducts) => accumulator + totalProducts.count,
+              0
+            )}
+          </div>
+        )}
 
+        <BsFillCartFill className=" h-6 w-6 " />
+      </>
+    );
+  };
   return (
-    <div className="relative z-10">
+    <div className="flex relative z-10">
+      <Link
+        to="/cart"
+        className="flex sm:hidden relative place-items-center justify-center align-middle gap-2 z-10  w-full"
+      >
+        {renderCartBtn(true)}
+      </Link>
       <button
-        className="flex relative place-items-center justify-center align-middle gap-2 z-10"
+        className="hidden sm:flex  relative place-items-center justify-center align-middle gap-2 z-10"
         onClick={() => setIsCartOpen((prevState) => !prevState)}
       >
-        <div className="flex place-content-center bg-yellow-300 rounded-full w-12 px-4 py-1">
-          {/* {cart.length} */}
-          {cart.reduce(
-            (accumulator, totalProducts) => accumulator + totalProducts.count,
-            0
-          )}
-
-          {/* const totalItems = list.reduce(
-    (accumulator, currentNumber) => accumulator + currentNumber.total,
-    0
-  ); */}
-        </div>
-        <BsFillCartFill className=" h-6 w-6" />
+        {renderCartBtn(false)}
       </button>
       {isCartOpen && (
         <>
@@ -47,7 +58,7 @@ export function Cart() {
             onClick={() => setIsCartOpen(false)}
           />
           {cart.length > 0 ? (
-            <ul className="fixed top-20 right-0 w-screen  md:w-1/2 md:right-4 space-y-2 backdrop-blur-md shadow-xl rounded-lg bg-white/30">
+            <ul className="fixed top-20 right-0 w-screen  md:w-1/2 md:right-4 space-y-2 backdrop-blur-md shadow-xl rounded-b-lg bg-white/30">
               {cart.map((item) => (
                 <li
                   key={item.product.id}
@@ -76,6 +87,13 @@ export function Cart() {
                   </div>
                 </li>
               ))}
+              <Link
+                className="fixed text-center  top-20 right-0 w-screen md:w-1/2 md:right-4 p-4 space-y-2 backdrop-blur-md shadow-xl rounded-lg bg-yellow-300"
+                to="/cart"
+                onClick={() => toggleMenu()}
+              >
+                Go to cart
+              </Link>
             </ul>
           ) : (
             <div className="fixed text-center  top-20 right-0 w-screen md:w-1/2 md:right-4 p-4 space-y-2 backdrop-blur-md shadow-xl rounded-lg bg-yellow-300">
