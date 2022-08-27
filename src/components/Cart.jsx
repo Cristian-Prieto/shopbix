@@ -8,7 +8,10 @@ import { BsFillCartFill } from "react-icons/bs";
 export function Cart({ toggleMenu }) {
   const { cart, removeProductFromCart, addProductToCart } = useAppContext();
   const [isCartOpen, setIsCartOpen] = useState(false);
-
+  const totalProducts = cart.reduce(
+    (accumulator, totalProducts) => accumulator + totalProducts.count,
+    0
+  );
   useEffect(() => {
     // Blocking scroll when Cart "modal" is open.
     if (isCartOpen) {
@@ -25,10 +28,7 @@ export function Cart({ toggleMenu }) {
       <>
         {!isMobile && (
           <div className="flex place-content-center bg-yellow-300 rounded-full w-12 px-4 py-1">
-            {cart.reduce(
-              (accumulator, totalProducts) => accumulator + totalProducts.count,
-              0
-            )}
+            {totalProducts}
           </div>
         )}
 

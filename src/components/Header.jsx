@@ -6,6 +6,7 @@ import { GrMenu, GrClose } from "react-icons/gr";
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
+    window.scrollTo(0, 0);
     setIsOpen((prevState) => !prevState);
   };
   useEffect(() => {

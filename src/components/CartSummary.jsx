@@ -3,29 +3,27 @@ import { useAppContext } from "../hooks/useAppContext";
 import { AddToCart } from "./AddToCart";
 export function CartSummary() {
   const { cart } = useAppContext();
+  const totalProducts = cart.reduce(
+    (accumulator, totalProducts) => accumulator + totalProducts.count,
+    0
+  );
+  const totalPrice = cart.reduce(
+    (accumulator, current) =>
+      accumulator + current.count * current.product.price,
+    0
+  );
+  console.log(cart);
   return (
     <div className="container max-w-5xl flex flex-col space-y-4 p-4 my-8">
       <div className="flex flex-col sm:flex-row py-4 shadow-lg rounded-lg bg-white ">
         <div className="flex flex-col w-full">
-          <div className="flex justify-between  mb-8 mx-4 border-b-2">
-            <h1 className="text-lg">
-              Subtotal (
-              {cart.reduce(
-                (accumulator, totalProducts) =>
-                  accumulator + totalProducts.count,
-                0
-              )}
-              ) items.
+          <div className="flex justify-between items-baseline mb-8 mx-4 border-b-2">
+            <h1 className="text-lg font-semibold">
+              Subtotal ({totalProducts}) items.
             </h1>
             <div>
               <span>TOTAL: $</span>
-              <span className="font-bold">
-                {cart.reduce(
-                  (accumulator, totalPrices) =>
-                    accumulator + totalPrices.product.price,
-                  0
-                )}
-              </span>
+              <span className="font-bold">{totalPrice}</span>
             </div>
           </div>
           <div className="mx-auto">
@@ -38,7 +36,9 @@ export function CartSummary() {
           </div>
         </div>
       </div>
-      <span className="hidden sm:block text-right pr-4">Price</span>
+      <span className="hidden sm:block text-right font-semibold pr-4">
+        Price
+      </span>
       <div className="shadow-lg rounded-lg bg-white py-4 space-y-4">
         {cart.map((item) => (
           <div key={item.product.id} className="flex flex-col sm:flex-row pl-4">
@@ -70,6 +70,27 @@ export function CartSummary() {
             </div>
           </div>
         ))}
+
+        {/* <div className="flex items-baseline mb-8 bg-yellow-300">
+          <h1 className="text-lg font-semibold">
+            Subtotal (
+            {cart.reduce(
+              (accumulator, totalProducts) => accumulator + totalProducts.count,
+              0
+            )}
+            ) items.
+          </h1>
+          <div>
+            <span>TOTAL: $</span>
+            <span className="font-bold">
+              {cart.reduce(
+                (accumulator, totalPrices) =>
+                  accumulator + totalPrices.product.price,
+                0
+              )}
+            </span>
+          </div>
+        </div> */}
       </div>
     </div>
   );
