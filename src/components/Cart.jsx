@@ -25,7 +25,6 @@ export function Cart({ toggleMenu }) {
       <>
         {!isMobile && (
           <div className="flex place-content-center bg-yellow-300 rounded-full w-12 px-4 py-1">
-            {/* {cart.length} */}
             {cart.reduce(
               (accumulator, totalProducts) => accumulator + totalProducts.count,
               0
@@ -47,7 +46,10 @@ export function Cart({ toggleMenu }) {
       </Link>
       <button
         className="hidden sm:flex  relative place-items-center justify-center align-middle gap-2 z-10"
-        onClick={() => setIsCartOpen((prevState) => !prevState)}
+        onClick={() => {
+          window.scrollTo(0, 0);
+          setIsCartOpen((prevState) => !prevState);
+        }}
       >
         {renderCartBtn(false)}
       </button>
@@ -58,7 +60,14 @@ export function Cart({ toggleMenu }) {
             onClick={() => setIsCartOpen(false)}
           />
           {cart.length > 0 ? (
-            <ul className="fixed top-20 right-0 w-screen  md:w-1/2 md:right-4 space-y-2 backdrop-blur-md shadow-xl rounded-b-lg bg-white/30">
+            <ul className="fixed hidden sm:block top-20 right-0 w-screen  md:w-1/2 md:right-4 space-y-2 backdrop-blur-md shadow-xl rounded-b-lg bg-white/30">
+              <Link
+                className="flex justify-center place-items-center  p-4 w-full backdrop-blur-md bg-yellow-300 hover:bg-yellow-200"
+                to="/cart"
+                onClick={() => toggleMenu()}
+              >
+                Go to cart
+              </Link>
               {cart.map((item) => (
                 <li
                   key={item.product.id}
@@ -87,13 +96,6 @@ export function Cart({ toggleMenu }) {
                   </div>
                 </li>
               ))}
-              <Link
-                className="fixed text-center  top-20 right-0 w-screen md:w-1/2 md:right-4 p-4 space-y-2 backdrop-blur-md shadow-xl rounded-lg bg-yellow-300"
-                to="/cart"
-                onClick={() => toggleMenu()}
-              >
-                Go to cart
-              </Link>
             </ul>
           ) : (
             <div className="fixed text-center  top-20 right-0 w-screen md:w-1/2 md:right-4 p-4 space-y-2 backdrop-blur-md shadow-xl rounded-lg bg-yellow-300">
