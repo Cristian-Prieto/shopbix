@@ -83,7 +83,10 @@ export function Payment() {
               </div>
             </div>
 
-            <span className="bg-red-400">Cristian Prieto</span>
+            <span className="bg-red-400">
+              {list[1].firstName}
+              {list[1].lastName}
+            </span>
 
             <span>55/2055</span>
           </div>
@@ -114,13 +117,15 @@ export function Payment() {
                         </div>
                         <div className="flex space-x-4">
                           <form
-                            onSubmit={setList({
-                              id: 3,
-                              firstName: "Jimena",
-                              lastName: "Prieto",
-                              cardNumber: 5599,
-                              expiresDate: "10/24",
-                            })}
+                            onClick={() =>
+                              setList(list, {
+                                id: 0,
+                                firstName: "Cristian",
+                                lastName: "Prieto",
+                                cardNumber: 5555,
+                                expiresDate: "04/24",
+                              })
+                            }
                             className="flex flex-col w-80 sm:w-full p-4 sm:border-r-2 border-gray-300"
                           >
                             <div className="relative z-0 mb-6 w-full group">
@@ -179,11 +184,7 @@ export function Payment() {
                                 Expiration date
                               </label>
                             </div>
-
-                            <button
-                              type="submit"
-                              className="mt-8 px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white"
-                            >
+                            <button className="mt-8 px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white">
                               Add your card
                             </button>
                           </form>
@@ -215,7 +216,7 @@ export function Payment() {
           </div>
         </div>
         <div className="flex p-4 bg-red-200">
-          <div className="flex flex-col w-full items-center bg-orange-400">
+          <div className="flex flex-col w-full items-center  bg-orange-400">
             <button>Pay</button>
             <span>Total to pay : ${totalPrice}</span>
             <span>Card selected:</span>
