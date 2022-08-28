@@ -27,7 +27,7 @@ export function Cart({ toggleMenu }) {
     return (
       <>
         {!isMobile && (
-          <div className="flex place-content-center bg-yellow-300 rounded-full w-12 px-4 py-1">
+          <div className="flex place-content-center bg-yellow-300 hover:bg-yellow-400 rounded-full w-12 px-4 py-1">
             {totalProducts}
           </div>
         )}

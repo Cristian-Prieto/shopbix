@@ -27,12 +27,12 @@ export function CartSummary() {
             </div>
           </div>
           <div className="mx-auto">
-            <button
-              // onClick=""
+            <Link
+              to={"/cart/payment"}
               className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-yellow-300 transition hover:bg-yellow-400"
             >
               Procced to checkout
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -70,27 +70,6 @@ export function CartSummary() {
             </div>
           </div>
         ))}
-
-        {/* <div className="flex items-baseline mb-8 bg-yellow-300">
-          <h1 className="text-lg font-semibold">
-            Subtotal (
-            {cart.reduce(
-              (accumulator, totalProducts) => accumulator + totalProducts.count,
-              0
-            )}
-            ) items.
-          </h1>
-          <div>
-            <span>TOTAL: $</span>
-            <span className="font-bold">
-              {cart.reduce(
-                (accumulator, totalPrices) =>
-                  accumulator + totalPrices.product.price,
-                0
-              )}
-            </span>
-          </div>
-        </div> */}
       </div>
     </div>
   );

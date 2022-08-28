@@ -4,8 +4,9 @@ import { Footer } from "./components/Footer";
 import { Home } from "./components/Home";
 import { CartSummary } from "./components/CartSummary";
 import { ProductDetail } from "./components/ProductDetail";
-import { EditProduct } from "./components/EditProduct";
+import { AddProduct } from "./components/AddProduct";
 import { ShoppingList } from "./components/ShoppingList";
+import { Payment } from "./components/Payment";
 import "./App.css";
 import AppContextComponent from "./context";
 
@@ -20,8 +21,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/list" element={<ShoppingList />} />
               <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/edit" element={<EditProduct />} />
+              <Route path="/add" element={<AddProduct />} />
               <Route path="/cart" element={<CartSummary />} />
+              <Route path="/cart/payment" element={<Payment />} />
             </Routes>
           </div>
 

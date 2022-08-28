@@ -63,7 +63,7 @@ export function Header() {
               Buy
             </NavLink>
             <NavLink
-              to="/edit"
+              to="/add"
               onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
                 isActive

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { InputText } from "./InputText";
 
-export function EditProduct() {
+export function AddProduct() {
   const INITIAL_PRODUCT = {
     title: "",
     price: 1,
