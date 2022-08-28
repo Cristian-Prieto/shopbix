@@ -114,7 +114,13 @@ export function Payment() {
                         </div>
                         <div className="flex space-x-4">
                           <form
-                            onSubmit=""
+                            onSubmit={setList({
+                              id: 3,
+                              firstName: "Jimena",
+                              lastName: "Prieto",
+                              cardNumber: 5599,
+                              expiresDate: "10/24",
+                            })}
                             className="flex flex-col w-80 sm:w-full p-4 sm:border-r-2 border-gray-300"
                           >
                             <div className="relative z-0 mb-6 w-full group">
