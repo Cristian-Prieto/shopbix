@@ -59,9 +59,9 @@ export function Payment() {
 
   return (
     <div className="flex w-full h-auto my-8 p-4">
-      <div className="flex flex-col-reverse sm:flex-row flex-1 shadow-lg rounded-lg bg-white">
+      <div className="flex flex-col-reverse sm:flex-row flex-1 shadow-lg rounded-lg space-x-8 bg-white">
         <div className="flex flex-1 flex-col space-y-4 p-4">
-          <h1 className="text-lg font-semibold mb-4">
+          <h1 className="text-xl font-semibold mb-4">
             Select a payment method
           </h1>
           <h2 className="font-semibold text-gray-700">
@@ -76,7 +76,7 @@ export function Payment() {
               {list.map((item) => (
                 <label
                   key={item.cardNumber}
-                  className={`flex justify-between items-center gap-4 rounded-md p-4 ${
+                  className={`flex  justify-between items-center gap-4 shadow-md rounded-xl p-4 ${
                     spotlight === item
                       ? "text-black bg-yellow-400"
                       : "text-gray-500"
@@ -84,11 +84,11 @@ export function Payment() {
                   onClick={() => setSpotLight(item)}
                 >
                   <div className="flex items-center w-full justify-between">
-                    <div className="flex items-center gap-8">
+                    <div className="flex items-center gap-8 ">
                       <input
                         type="radio"
                         name="container"
-                        className="ml-4 bg-white focus:ring-2  focus:ring-white text-black focus:ring-offset-gray-700"
+                        className="ml-4 bg-white focus:ring-2 focus:ring-white text-black focus:ring-offset-gray-700 "
                       />
                       <span>{item.type}</span>
                       <div className="flex flex-col max-h-28 sm:h-auto">
@@ -116,15 +116,15 @@ export function Payment() {
             </div>
           )}
 
-          <div className="flex flex-1 flex-col p-4  shadow-lg rounded-lg">
-            <h2 className="text-lg font-semibold mb-4 text-gray-700 bg-yellow-400">
+          <div className="flex flex-1 flex-col shadow-lg rounded-lg">
+            <h2 className="text-lg font-semibold p-4 mb-4 rounded-t-xl text-gray-700 bg-yellow-400">
               More payment methods
             </h2>
             <div className="flex flex-col">
-              <h2>Credit or debit cards</h2>
+              <h2 className="pl-4">Credit or debit cards:</h2>
               <div className="flex justify-between ">
                 <div className="flex flex-col place-content-center w-full">
-                  <span className="flex justify-center ">
+                  <span className="flex justify-center mb-4">
                     Shopbix accepts major credit and debit cards.
                   </span>
                   <button
