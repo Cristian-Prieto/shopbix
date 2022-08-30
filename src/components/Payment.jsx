@@ -58,8 +58,8 @@ export function Payment() {
   }, [modal]);
 
   return (
-    <div className="flex w-full h-auto my-8 p-4">
-      <div className="flex flex-col-reverse sm:flex-row flex-1 shadow-lg rounded-lg space-x-8 bg-white">
+    <div className="flex sm:w-full h-auto my-8 sm:p-4">
+      <div className="flex flex-col-reverse  sm:flex-row  flex-1 shadow-lg rounded-lg sm:space-x-8 bg-white">
         <div className="flex flex-1 flex-col space-y-4 p-4">
           <h1 className="text-xl font-semibold mb-4">
             Select a payment method
@@ -84,11 +84,11 @@ export function Payment() {
                   onClick={() => setSpotLight(item)}
                 >
                   <div className="flex items-center w-full justify-between">
-                    <div className="flex items-center gap-8 ">
+                    <div className="flex items-center sm:gap-8 space-x-4">
                       <input
                         type="radio"
                         name="container"
-                        className="ml-4 bg-white focus:ring-2 focus:ring-white text-black focus:ring-offset-gray-700 "
+                        className="sm:ml-4 bg-white focus:ring-2 focus:ring-white text-black focus:ring-offset-gray-700 "
                       />
                       <span>{item.type}</span>
                       <div className="flex flex-col max-h-28 sm:h-auto">
@@ -100,8 +100,10 @@ export function Payment() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex">
-                      <span className=" text-right pr-4">{item.fullName}</span>
+                    <div className="flex items-center">
+                      <span className=" text-right sm:pr-4">
+                        {item.fullName}
+                      </span>
                       <span className="w-32 text-center ">
                         {item.expirationDate}
                       </span>
@@ -117,19 +119,19 @@ export function Payment() {
           )}
 
           <div className="flex flex-1 flex-col shadow-lg rounded-lg">
-            <h2 className="text-lg font-semibold p-4 mb-4 rounded-t-xl text-gray-700 bg-yellow-400">
+            <h2 className="text-lg text-center sm:text-left font-semibold p-4 mb-4 rounded-t-xl text-gray-700 bg-yellow-400">
               More payment methods
             </h2>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center sm:items-stretch">
               <h2 className="pl-4">Credit or debit cards:</h2>
-              <div className="flex justify-between ">
+              <div className="flex flex-col sm:flex-row justify-between ">
                 <div className="flex flex-col place-content-center w-full">
                   <span className="flex justify-center mb-4">
                     Shopbix accepts major credit and debit cards.
                   </span>
                   <button
                     onClick={toggleModal}
-                    className=" max-w-md px-4 py-2 mx-auto uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30"
+                    className=" max-w-md px-4 py-2 m-4 sm:mx-auto uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30"
                   >
                     Add a credit or debit card
                   </button>
@@ -141,7 +143,7 @@ export function Payment() {
                   <img
                     src="/images/cards.jpg"
                     alt="credit-cards"
-                    className="h-40 contain"
+                    className="mx-auto my-4 sm:m-0  h-40 contain"
                   />
                 </div>
               </div>
