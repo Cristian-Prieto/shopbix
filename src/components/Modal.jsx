@@ -1,25 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GrClose } from "react-icons/gr";
 export function Modal({ toggleModal, addNewCard }) {
   const [newCard, setNewCard] = useState({
-    id: 0,
+    type: "",
     fullName: "",
-    cardNumber: 5555,
+    cardNumber: "",
     expirationDate: "2022-08",
+    securityCode: "",
   });
 
   const handleInputChange = (event) => {
-    setNewCard({ ...newCard, [event.target.name]: event.target.value });
-    console.log(newCard);
+    setNewCard({
+      ...newCard,
+      [event.target.name]: event.target.value,
+    });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addNewCard(newCard);
   };
 
-  const getModalCardStyle = () => {
-    if (String(newCard.cardNumber).slice(0, 3) === 2424) return "green";
+  const getCardType = (number) => {
+    if (String(number).slice(0) === "3") return "American express";
+    if (String(number).slice(0) === "4") return "Visa";
+    if (String(number).slice(0) === "5") return "Master card";
   };
+
+  useEffect(() => {
+    getCardType(newCard.cardNumber);
+  }, [newCard]);
 
   return (
     <div className="flex fixed justify-center items-center z-30 inset-0">
@@ -27,9 +37,9 @@ export function Modal({ toggleModal, addNewCard }) {
         onClick={toggleModal}
         className="fixed justify-center items-center z-30 inset-0 bg-black bg-opacity-80"
       ></div>
-      <div className={`fixed z-40 p-4 rounded-lg bg-${getModalCardStyle}-300`}>
-        <div className="flex justify-between w-full mb-8">
-          <span className="text-lg pl-4">Add a credit or debit card</span>
+      <div className={`fixed z-40 p-4 rounded-lg bg-green-500`}>
+        <div className="flex justify-between w-full mb-4">
+          <span className="text-lg">Add a credit or debit card</span>
           <button onClick={toggleModal}>
             <GrClose />
           </button>
@@ -37,74 +47,86 @@ export function Modal({ toggleModal, addNewCard }) {
         <div className="flex space-x-4">
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col w-80 sm:w-full p-4 sm:border-r-2 border-gray-300"
+            className="flex flex-col justify-start max-w-sm sm:w-full  "
           >
-            <div className="relative z-0 mb-6 w-full group">
+            <label
+              htmlFor="cardNumber"
+              className="flex flex-col text-sm mb-4 text-gray-800"
+            >
+              Card number
               <input
                 type="number"
                 name="cardNumber"
                 id="cardNumber"
                 value={newCard.cardNumber}
                 onChange={handleInputChange}
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-400 peer"
-                placeholder=" "
+                placeholder="xxxx xxxx xxxx xxxx"
                 required
               />
-              <label
-                htmlFor="cardNumber"
-                className="peer-focus:font-medium absolute text-sm text-gray-700  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-yellow-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Card number
-              </label>
-            </div>
-
-            <div className="relative z-0 mb-6 w-full group">
+            </label>
+            <label
+              htmlFor="fullName"
+              className="flex flex-col text-sm mb-4 text-gray-800"
+            >
+              Cardholder name
               <input
                 type="text"
                 name="fullName"
                 value={newCard.fullName}
                 onChange={handleInputChange}
                 id="fullName"
-                className="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-400 peer"
-                placeholder=" "
+                placeholder="Name on card"
                 required
               />
-              <label
-                htmlFor="name"
-                className="peer-focus:font-medium absolute text-sm text-gray-800  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-yellow-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Name on card
-              </label>
-            </div>
-
-            <div className="relative z-0 mb-6 w-full group">
-              <input
-                type="month"
-                name="expirationDate"
-                id="expirationDate"
-                value={newCard.expirationDate}
-                onChange={handleInputChange}
-                className="block py-2.5 px-0 w-full text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-400 peer"
-                placeholder=" "
-                required
-              />
+            </label>
+            <div className="flex justify-between w-full mb-4">
               <label
                 htmlFor="expirationDate"
-                className="peer-focus:font-medium absolute text-sm text-gray-800  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-yellow-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                className="flex flex-col text-sm text-gray-800"
               >
                 Expiration date
+                <input
+                  type="month"
+                  name="expirationDate"
+                  id="expirationDate"
+                  value={newCard.expirationDate}
+                  onChange={handleInputChange}
+                  placeholder="MM/YY Expires"
+                  className="flex"
+                  required
+                />
               </label>
+              <div className="flex flex-col items-end">
+                <label
+                  htmlFor="securityCode"
+                  className="flex flex-col text-center text-sm text-gray-800"
+                >
+                  Security code
+                </label>
+                <input
+                  type="number"
+                  name="securityCode"
+                  id="securityCode"
+                  value={newCard.securityCode}
+                  onChange={handleInputChange}
+                  className=" max-w-[100px] text-center"
+                  placeholder="xxx"
+                  required
+                />
+              </div>
             </div>
-            <button className="mt-8 px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white">
+            <button className="px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white">
               Add your card
             </button>
           </form>
-          <div className="hidden sm:flex flex-col items-baseline h-full align-middle justify-center place-content-center m-auto space-y-4">
-            <h2>Shopbix accepts all major credit and debit cards:</h2>
+          <div className="hidden sm:flex flex-col h-full p-4 m-auto">
+            <h2 className="text-left max-w-[200px]">
+              Shopbix accepts all major credit and debit cards:
+            </h2>
             <img
               src="/images/cards.jpg"
               alt="credit-cards"
-              className="h-40 contain"
+              className="h-36 cover"
             />
           </div>
         </div>
