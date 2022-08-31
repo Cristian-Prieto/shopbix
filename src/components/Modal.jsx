@@ -1,5 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GrClose } from "react-icons/gr";
+import { getCardType } from "../utils/utils";
+
+const normalizeCardNumber = (value) => {
+  return (
+    value
+      .replace(/[^0-9.]/g, "")
+      .replace(/\s/g, "")
+      .match(/.{1,4}/g)
+      ?.join(" ")
+      .substr(0, 19) || ""
+  );
+};
+
+const normalizeSecurityCode = (value) => {
+  return (
+    value
+      .replace(/[^0-9.]/g, "")
+      .replace(/\s/g, "")
+      ?.substr(0, 3) || ""
+  );
+};
+
 export function Modal({ toggleModal, addNewCard }) {
   const [newCard, setNewCard] = useState({
     type: "",
@@ -16,20 +38,54 @@ export function Modal({ toggleModal, addNewCard }) {
     });
   };
 
+  const handleCardNumberInputChange = (event) => {
+    event.target.value = normalizeCardNumber(event.target.value);
+    setNewCard({
+      ...newCard,
+      cardNumber: event.target.value,
+    });
+  };
+
+  const handleCardSecurityCodeInputChange = (event) => {
+    event.target.value = normalizeSecurityCode(event.target.value);
+    setNewCard({
+      ...newCard,
+      securityCode: event.target.value,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    addNewCard(newCard);
+    if (newCard.cardNumber.length === 19 && newCard.securityCode.length === 3) {
+      addNewCard(newCard);
+    }
   };
 
-  const getCardType = (number) => {
-    if (String(number).slice(0) === "3") return "American express";
-    if (String(number).slice(0) === "4") return "Visa";
-    if (String(number).slice(0) === "5") return "Master card";
+  const getModalStyleByCreditCard = (cardType) => {
+    const types = {
+      "American Express":
+        "bg-gradient-to-br from-green-500 via-green-400 to-green-500 text-green-900 ",
+      Visa: "bg-gradient-to-br from-blue-500 via-blue-400 to-blue-500 text-blue-700",
+      MasterCard: "bg-gradient-to-br from-red-500 to-orange-500 text-red-800",
+    };
+
+    return types[cardType] ?? "";
   };
 
-  useEffect(() => {
-    getCardType(newCard.cardNumber);
-  }, [newCard]);
+  const getModalBackgroundImage = (cardType) => {
+    const types = {
+      "American Express": "/images/americanexpress.png",
+      Visa: "/images/visa.png",
+      MasterCard: "/images/mastercard.png",
+    };
+
+    return types[cardType] ?? "";
+  };
+
+  const modalStyle = getModalStyleByCreditCard(getCardType(newCard.cardNumber));
+  const backgroundImage = getModalBackgroundImage(
+    getCardType(newCard.cardNumber)
+  );
 
   return (
     <div className="flex fixed justify-center items-center z-30 inset-0">
@@ -37,17 +93,19 @@ export function Modal({ toggleModal, addNewCard }) {
         onClick={toggleModal}
         className="fixed justify-center items-center z-30 inset-0 bg-black bg-opacity-80"
       ></div>
-      <div className={`fixed z-40 p-4 rounded-lg bg-green-500`}>
+      <div
+        className={`overflow-hidden fixed w-[calc(100vw-2rem)] sm:w-[600px] z-40 p-4 rounded-lg bg-white transition duration-300 ${modalStyle} drop-shadow-sm`}
+      >
         <div className="flex justify-between w-full mb-4">
           <span className="text-lg">Add a credit or debit card</span>
           <button onClick={toggleModal}>
             <GrClose />
           </button>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 w-full">
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col justify-start max-w-sm sm:w-full  "
+            className="flex flex-col justify-start w-full"
           >
             <label
               htmlFor="cardNumber"
@@ -55,13 +113,14 @@ export function Modal({ toggleModal, addNewCard }) {
             >
               Card number
               <input
-                type="number"
+                type="text"
                 name="cardNumber"
                 id="cardNumber"
                 value={newCard.cardNumber}
-                onChange={handleInputChange}
+                onChange={handleCardNumberInputChange}
                 placeholder="xxxx xxxx xxxx xxxx"
                 required
+                className="rounded-lg "
               />
             </label>
             <label
@@ -77,6 +136,7 @@ export function Modal({ toggleModal, addNewCard }) {
                 id="fullName"
                 placeholder="Name on card"
                 required
+                className="rounded-lg"
               />
             </label>
             <div className="flex justify-between w-full mb-4">
@@ -92,7 +152,7 @@ export function Modal({ toggleModal, addNewCard }) {
                   value={newCard.expirationDate}
                   onChange={handleInputChange}
                   placeholder="MM/YY Expires"
-                  className="flex"
+                  className="rounded-lg"
                   required
                 />
               </label>
@@ -104,12 +164,12 @@ export function Modal({ toggleModal, addNewCard }) {
                   Security code
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="securityCode"
                   id="securityCode"
                   value={newCard.securityCode}
-                  onChange={handleInputChange}
-                  className=" max-w-[100px] text-center"
+                  onChange={handleCardSecurityCodeInputChange}
+                  className=" max-w-[100px] text-center rounded-lg"
                   placeholder="xxx"
                   required
                 />
@@ -119,17 +179,12 @@ export function Modal({ toggleModal, addNewCard }) {
               Add your card
             </button>
           </form>
-          <div className="hidden sm:flex flex-col h-full p-4 m-auto">
-            <h2 className="text-left max-w-[200px]">
-              Shopbix accepts all major credit and debit cards:
-            </h2>
-            <img
-              src="/images/cards.jpg"
-              alt="credit-cards"
-              className="h-36 cover"
-            />
-          </div>
         </div>
+        {backgroundImage && (
+          <div className="absolute bottom-0 right-0 opacity-30 -z-10">
+            <img src={backgroundImage} alt="credit-cards" className="h-full" />
+          </div>
+        )}
       </div>
     </div>
   );

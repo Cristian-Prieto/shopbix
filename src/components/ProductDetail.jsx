@@ -8,7 +8,7 @@ export function ProductDetail() {
   const [productInfo, setProductInfo] = useState();
   const { id } = useParams();
 
-  const getProductUrl = `https://fake-api-shopping-backend.onrender.com/api/v1/products/${id}`;
+  const getProductUrl = `https://api.escuelajs.co/api/v1/products/${id}`;
   useEffect(() => {
     fetch(getProductUrl)
       .then((response) => response.json())

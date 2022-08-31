@@ -2,18 +2,17 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "../hooks/useAppContext";
 import { Modal } from "./Modal";
 import { GrClose } from "react-icons/gr";
+import { getCardType } from "../utils/utils";
 
 const INITIAL_CREDIT_LIST = [
   {
-    type: "nada",
     fullName: "Cristian Prieto",
-    cardNumber: 0,
+    cardNumber: 3323232323,
     expirationDate: "2024-12",
   },
   {
-    type: "nada",
     fullName: "Julian Prieto",
-    cardNumber: 12,
+    cardNumber: 42223232323,
     expirationDate: "2023-12",
   },
 ];
@@ -40,8 +39,6 @@ export function Payment() {
     }
     return;
   };
-  console.log(spotlight.type);
-  console.log(list);
 
   const removeItem = (card) => {
     setList((prevState) =>
@@ -59,7 +56,7 @@ export function Payment() {
 
   return (
     <div className="flex sm:w-full h-auto my-8 sm:p-4">
-      <div className="flex flex-col-reverse  sm:flex-row  flex-1 shadow-lg rounded-lg sm:space-x-8 bg-white">
+      <div className="flex flex-col-reverse  lg:flex-row  flex-1 shadow-lg rounded-lg lg:space-x-8 bg-white">
         <div className="flex flex-1 flex-col space-y-4 p-4">
           <h1 className="text-xl font-semibold mb-4">
             Select a payment method
@@ -76,7 +73,7 @@ export function Payment() {
               {list.map((item) => (
                 <label
                   key={item.cardNumber}
-                  className={`flex  justify-between items-center gap-4 shadow-md rounded-xl p-4 ${
+                  className={`flex  justify-between items-center  gap-4 shadow-md rounded-xl p-4 ${
                     spotlight === item
                       ? "text-black bg-yellow-400"
                       : "text-gray-500"
@@ -90,12 +87,14 @@ export function Payment() {
                         name="container"
                         className="sm:ml-4 bg-white focus:ring-2 focus:ring-white text-black focus:ring-offset-gray-700 "
                       />
-                      <span>{item.type}</span>
+                      <span className="text-center w-24">
+                        {getCardType(item.cardNumber)}
+                      </span>
                       <div className="flex flex-col max-h-28 sm:h-auto">
                         <span>
                           ending in {String(item.cardNumber).slice(-4)}
                         </span>
-                        <span className="hidden md:block">
+                        <span className="hidden lg:block">
                           My card is in U.S. Dollar (USD)
                         </span>
                       </div>
@@ -143,18 +142,29 @@ export function Payment() {
                   <img
                     src="/images/cards.jpg"
                     alt="credit-cards"
-                    className="mx-auto my-4 sm:m-0  h-40 contain"
+                    className="mx-auto my-4 sm:m-0 sm:p-4  h-48"
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex p-4 bg-red-200">
-          <div className="flex flex-col w-full items-center  bg-orange-400">
-            <button>Pay</button>
-            <span>Total to pay : ${totalPrice}</span>
-            <span>Card selected: {}</span>
+        <div className="flex p-4">
+          <div className="flex flex-col w-full max-h-60 text-center items-center my-4 lg:w-56 shadow-lg rounded-xl hover:bg-yellow-500 hover:shadow-xl transition duration-300 bg-yellow-400">
+            <button className="max-w-md px-4 py-2 m-4 lg:mt-4 font-semibold sm:mx-auto uppercase shadow-md lg:mb-auto rounded-xl bg-white transition hover:bg-green-600 hover:text-yellow-100">
+              Pay
+            </button>
+            <div className="flex flex-col items-center mb-4  md:mb-8">
+              <span className="w-full">
+                Card selected: {getCardType(spotlight.cardNumber)}
+              </span>
+              <span className="w-full">
+                ending in: {String(spotlight.cardNumber).slice(-4)}
+              </span>
+              <span className="w-full font-semibold">
+                Total to pay : ${totalPrice}
+              </span>
+            </div>
           </div>
         </div>
       </div>

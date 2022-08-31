@@ -8,7 +8,7 @@ export function ShoppingList() {
   const [productsList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
   const [currentPageUrl, setCurrentPageUrl] = useState(
-    `https://fake-api-shopping-backend.onrender.com/api/v1/products?offset=${offset}&limit=10`
+    `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=10`
   );
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export function ShoppingList() {
 
   const nextPage = () => {
     setCurrentPageUrl(
-      `https://fake-api-shopping-backend.onrender.com/api/v1/products?offset=${
+      `https://api.escuelajs.co/api/v1/products?offset=${
         offset + ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );
@@ -32,7 +32,7 @@ export function ShoppingList() {
 
   const previousPage = () => {
     setCurrentPageUrl(
-      `https://fake-api-shopping-backend.onrender.com/api/v1/products?offset=${
+      `https://api.escuelajs.co/api/v1/products?offset=${
         offset - ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );

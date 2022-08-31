@@ -17,8 +17,7 @@ export function AddProduct() {
     setNewProduct({ ...newProduct, [event.target.name]: event.target.value });
   };
 
-  const addProductUrl =
-    "https://fake-api-shopping-backend.onrender.com/api/v1/products";
+  const addProductUrl = "https://api.escuelajs.co/api/v1/products";
   const addNewProduct = (event) => {
     event.preventDefault();
     fetch(addProductUrl, {

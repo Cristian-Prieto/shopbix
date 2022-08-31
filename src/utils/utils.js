@@ -13,3 +13,11 @@ export const getCartFromLocalStorage = () => {
 
   return INITIAL_CONTEXT;
 };
+
+export const getCardType = (number) => {
+  if (!number) return "";
+
+  if (String(number).startsWith("3")) return "American Express";
+  if (String(number).startsWith("4")) return "Visa";
+  if (String(number).startsWith("5")) return "MasterCard";
+};
