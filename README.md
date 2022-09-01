@@ -8,7 +8,7 @@
 
 ![](https://img.shields.io/netlify/34fbb4b8-8795-4d96-909a-7a7e7bcb07b8)
 
-<a href="https://cubix-shopbix.netlify.app/" target="_blank">Go to site</a>
+[Go to site](https://cubix-shopbix.netlify.app/){:target="\_blank"}
 
 A small fake shoping page, with shopping cart, product list, adding and removing items functionality, checkout, adding and selecting credict cards, all made with love 🤍.
 
