@@ -94,7 +94,7 @@ export function Modal({ toggleModal, addNewCard }) {
         className="fixed justify-center items-center z-30 inset-0 bg-black bg-opacity-80"
       ></div>
       <div
-        className={`overflow-hidden fixed w-[calc(100vw-2rem)] sm:w-[600px] z-40 p-4 rounded-lg bg-white transition duration-300 ${modalStyle} drop-shadow-sm`}
+        className={`overflow-hidden fixed w-[calc(100vw-2rem)] sm:w-[600px] z-40 p-4 rounded-lg backdrop-blur-md text-white bg-white/30 transition duration-300 ${modalStyle}`}
       >
         <div className="flex justify-between w-full mb-4">
           <span className="text-lg">Add a credit or debit card</span>
@@ -109,7 +109,7 @@ export function Modal({ toggleModal, addNewCard }) {
           >
             <label
               htmlFor="cardNumber"
-              className="flex flex-col text-sm mb-4 text-gray-800"
+              className="flex flex-col text-sm mb-4 text-white"
             >
               Card number
               <input
@@ -120,12 +120,12 @@ export function Modal({ toggleModal, addNewCard }) {
                 onChange={handleCardNumberInputChange}
                 placeholder="xxxx xxxx xxxx xxxx"
                 required
-                className="rounded-lg "
+                className="rounded-lg text-gray-800"
               />
             </label>
             <label
               htmlFor="fullName"
-              className="flex flex-col text-sm mb-4 text-gray-800"
+              className="flex flex-col text-sm mb-4  text-white"
             >
               Cardholder name
               <input
@@ -134,15 +134,16 @@ export function Modal({ toggleModal, addNewCard }) {
                 value={newCard.fullName}
                 onChange={handleInputChange}
                 id="fullName"
+                autoComplete="off"
                 placeholder="Name on card"
                 required
-                className="rounded-lg"
+                className="rounded-lg text-gray-800"
               />
             </label>
             <div className="flex justify-between w-full mb-4">
               <label
                 htmlFor="expirationDate"
-                className="flex flex-col text-sm text-gray-800"
+                className="flex flex-col text-sm text-white"
               >
                 Expiration date
                 <input
@@ -152,14 +153,14 @@ export function Modal({ toggleModal, addNewCard }) {
                   value={newCard.expirationDate}
                   onChange={handleInputChange}
                   placeholder="MM/YY Expires"
-                  className="rounded-lg"
+                  className="rounded-lg text-gray-800"
                   required
                 />
               </label>
               <div className="flex flex-col items-end">
                 <label
                   htmlFor="securityCode"
-                  className="flex flex-col text-center text-sm text-gray-800"
+                  className="flex flex-col text-center text-sm text-white"
                 >
                   Security code
                 </label>
@@ -169,13 +170,13 @@ export function Modal({ toggleModal, addNewCard }) {
                   id="securityCode"
                   value={newCard.securityCode}
                   onChange={handleCardSecurityCodeInputChange}
-                  className=" max-w-[100px] text-center rounded-lg"
+                  className="max-w-[100px] text-center rounded-lg text-gray-800"
                   placeholder="xxx"
                   required
                 />
               </div>
             </div>
-            <button className="px-4 py-2 uppercase shadow-md rounded-xl bg-white transition hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white">
+            <button className="px-4 py-2 uppercase shadow-md rounded-xl bg-white transition text-gray-800 hover:bg-yellow-300 disabled:opacity-30 disabled:hover:bg-white">
               Add your card
             </button>
           </form>

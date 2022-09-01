@@ -64,9 +64,9 @@ export function Payment() {
           <h2 className="font-semibold text-gray-700">
             Your credit and debit cards
           </h2>
-          <div className="hidden sm:flex w-full justify-end font-semibold gap-4 pr-12">
-            <span className="text-center w-32 opacity-60">Name on card</span>
-            <span className="text-center w-32 opacity-60">Expires on</span>
+          <div className="hidden sm:flex w-full justify-end font-semibold pr-4">
+            <span className="text-center w-28 opacity-60">Name on card</span>
+            <span className="text-center w-28 opacity-60">Expires on</span>
           </div>
           {list && (
             <div className="space-y-4">
@@ -76,7 +76,7 @@ export function Payment() {
                   className={`flex  justify-between items-center  gap-4 shadow-md rounded-xl p-4 ${
                     spotlight === item
                       ? "text-black bg-yellow-400"
-                      : "text-gray-500"
+                      : "text-gray-500 transition duration-300 hover:bg-slate-50"
                   }`}
                   onClick={() => setSpotLight(item)}
                 >
@@ -87,11 +87,11 @@ export function Payment() {
                         name="container"
                         className="sm:ml-4 bg-white focus:ring-2 focus:ring-white text-black focus:ring-offset-gray-700 "
                       />
-                      <span className="text-center w-24">
+                      <span className="text-center w-20">
                         {getCardType(item.cardNumber)}
                       </span>
                       <div className="flex flex-col max-h-28 sm:h-auto">
-                        <span>
+                        <span className="pr-4">
                           ending in {String(item.cardNumber).slice(-4)}
                         </span>
                         <span className="hidden lg:block">
@@ -99,11 +99,11 @@ export function Payment() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center">
-                      <span className=" text-right sm:pr-4">
+                    <div className="flex items-center space-x-2">
+                      <span className=" sm:text-right sm:pr-4">
                         {item.fullName}
                       </span>
-                      <span className="w-32 text-center ">
+                      <span className=" text-center ">
                         {item.expirationDate}
                       </span>
                     </div>
@@ -150,7 +150,7 @@ export function Payment() {
           </div>
         </div>
         <div className="flex p-4">
-          <div className="flex flex-col w-full max-h-60 text-center items-center my-4 lg:w-56 shadow-lg rounded-xl hover:bg-yellow-500 hover:shadow-xl transition duration-300 bg-yellow-400">
+          <div className="flex flex-col w-full max-h-52 text-center items-center my-4 lg:w-56 shadow-lg rounded-xl hover:bg-yellow-500 hover:shadow-xl transition duration-300 bg-yellow-400">
             <button className="max-w-md px-4 py-2 m-4 lg:mt-4 font-semibold sm:mx-auto uppercase shadow-md lg:mb-auto rounded-xl bg-white transition hover:bg-green-600 hover:text-yellow-100">
               Pay
             </button>

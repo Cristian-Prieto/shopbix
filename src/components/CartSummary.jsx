@@ -12,7 +12,6 @@ export function CartSummary() {
       accumulator + current.count * current.product.price,
     0
   );
-  console.log(cart);
   return (
     <div className="container max-w-5xl flex flex-col space-y-4 p-4 my-8">
       <div className="flex flex-col sm:flex-row py-4 shadow-lg rounded-lg bg-white ">
