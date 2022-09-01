@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function Home() {
   return (
     <div className="h-[calc(100vh-9rem)] w-screen relative overflow-hidden">
@@ -9,7 +11,7 @@ export function Home() {
         </h1>
 
         <button className="text-2xl px-4 py-2 shadow-xl rounded-xl bg-white transition text-gray-800 hover:bg-yellow-300">
-          Start buying!
+          <Link to="/list">Start buying!</Link>
         </button>
       </div>
       <div className="absolute inset-0 ">

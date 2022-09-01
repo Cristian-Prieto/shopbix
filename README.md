@@ -6,6 +6,8 @@
 
 # Shopbix
 
+![](https://img.shields.io/netlify/34fbb4b8-8795-4d96-909a-7a7e7bcb07b8)
+
 A small fake shoping page, with shopping cart, product list, adding and removing items functionality, checkout, adding and selecting credict cards, all made with love 🤍.
 
 ## Authors
