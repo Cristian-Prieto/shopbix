@@ -1,4 +1,5 @@
 import { useAppContext } from "../hooks/useAppContext";
+
 export function AddToCart({ product }) {
   const { removeProductFromCart, addProductToCart, cart } = useAppContext();
   const productInCart = cart.find((item) => item.product.id === product.id);

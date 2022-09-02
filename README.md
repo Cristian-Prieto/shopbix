@@ -1,4 +1,4 @@
-<p align="center"><img src="/public/images/banner.png"></img></p>
+[<p align="center"><img src="/public/images/banner.png"></img></p>](https://cubix-shopbix.netlify.app/)
 
 ![](https://img.shields.io/badge/REACT--DOM-18.2.0-blue)
 ![](https://img.shields.io/badge/REACT--ROUTER-6.3.0-yellow)

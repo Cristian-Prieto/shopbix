@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AddToCart } from "./AddToCart";
 
-export const Product = ({ product }) => {
+export function Product({ product }) {
   return (
     <li
       key={product.id}
@@ -33,4 +33,4 @@ export const Product = ({ product }) => {
       </div>
     </li>
   );
-};
+}

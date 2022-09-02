@@ -1,17 +1,24 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useAppContext } from "../hooks/useAppContext";
+import { Link, useLocation } from "react-router-dom";
 import { BsFillTrashFill } from "react-icons/bs";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
+import { useAppContext } from "../hooks/useAppContext";
 
-export function Cart({ toggleMenu }) {
+export function Cart() {
+  const location = useLocation();
+
   const { cart, removeProductFromCart, addProductToCart } = useAppContext();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const totalProducts = cart.reduce(
     (accumulator, totalProducts) => accumulator + totalProducts.count,
     0
   );
+
+  useEffect(() => {
+    setIsCartOpen(false);
+  }, [location]);
+
   useEffect(() => {
     // Blocking scroll when Cart "modal" is open.
     if (isCartOpen) {
@@ -23,6 +30,7 @@ export function Cart({ toggleMenu }) {
       document.body.style = "";
     };
   }, [isCartOpen]);
+
   const renderCartBtn = (isMobile) => {
     return (
       <>
@@ -36,6 +44,7 @@ export function Cart({ toggleMenu }) {
       </>
     );
   };
+
   return (
     <div className="flex relative z-10">
       <Link
@@ -64,7 +73,6 @@ export function Cart({ toggleMenu }) {
               <Link
                 className="flex justify-center place-items-center  p-4 w-full backdrop-blur-md bg-yellow-300 hover:bg-yellow-200"
                 to="/cart"
-                onClick={() => toggleMenu()}
               >
                 Go to cart
               </Link>

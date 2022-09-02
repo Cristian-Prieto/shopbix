@@ -1,21 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Gallery } from "./Gallery";
-import { AddToCart } from "./AddToCart";
-// import { DeleteFromApi } from "./DeleteFromApi";
+import { Gallery } from "../components/Gallery";
+import { AddToCart } from "../components/AddToCart";
 
 export function ProductDetail() {
   const [productInfo, setProductInfo] = useState();
   const { id } = useParams();
 
-  const getProductUrl = `https://api.escuelajs.co/api/v1/products/${id}`;
+  const getProductUrl = `${process.env.REACT_APP_SHOPPING_API_URL}/api/v1/products/${id}`;
   useEffect(() => {
     fetch(getProductUrl)
       .then((response) => response.json())
-      .then((jsonData) => {
-        setProductInfo(jsonData);
-      })
-      .catch((err) => console.log(err));
+      .then((jsonData) => setProductInfo(jsonData))
+      .catch((error) => console.error(error));
   }, [getProductUrl]);
 
   return (
@@ -38,7 +35,6 @@ export function ProductDetail() {
             <AddToCart product={productInfo} />
           </div>
         </div>
-        {/* <DeleteFromApi id={id} /> */}
       </div>
     )
   );

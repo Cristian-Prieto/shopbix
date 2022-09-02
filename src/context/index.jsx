@@ -3,7 +3,6 @@ import { saveToLocalStorage, getCartFromLocalStorage } from "../utils/utils";
 
 export const INITIAL_CONTEXT = {
   cart: [],
-  user: { name: "cris" },
 };
 
 export const AppContext = createContext();
@@ -20,6 +19,7 @@ const AppContextComponent = ({ children }) => {
       const alreadyExist = prevState.cart.find(
         (item) => item.product.id === product.id
       );
+
       if (alreadyExist) {
         return {
           ...prevState,
@@ -31,6 +31,7 @@ const AppContextComponent = ({ children }) => {
           }),
         };
       }
+
       return { ...prevState, cart: [...prevState.cart, { count: 1, product }] };
     });
   };
@@ -45,11 +46,14 @@ const AppContextComponent = ({ children }) => {
           ),
         };
       }
+
       return {
         ...prevState,
         cart: prevState.cart.map((item) => {
-          if (item.product.id === cartItem.product.id)
+          if (item.product.id === cartItem.product.id) {
             return { ...item, count: item.count - 1 };
+          }
+
           return item;
         }),
       };

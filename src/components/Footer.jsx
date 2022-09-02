@@ -4,7 +4,11 @@ export function Footer() {
       <span className="flex text-zinc-100 text-sm">
         Cristian Prieto 2022, Spain.
       </span>
-      <a href="https://github.com/Cristian-Prieto" target="black">
+      <a
+        href="https://github.com/Cristian-Prieto"
+        target="_blank"
+        rel="noreferrer"
+      >
         <img src="/images/github.png" alt="github logo" className="w-6" />
       </a>
     </div>

@@ -1,17 +1,28 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../hooks/useAppContext";
-import { AddToCart } from "./AddToCart";
+import { AddToCart } from "../components/AddToCart";
+
 export function CartSummary() {
   const { cart } = useAppContext();
-  const totalProducts = cart.reduce(
-    (accumulator, totalProducts) => accumulator + totalProducts.count,
-    0
+
+  const totalProducts = useMemo(
+    () =>
+      cart.reduce(
+        (accumulator, totalProducts) => accumulator + totalProducts.count,
+        0
+      ),
+    [cart]
   );
-  const totalPrice = cart.reduce(
-    (accumulator, current) =>
-      accumulator + current.count * current.product.price,
-    0
-  );
+
+  const totalPrice = useMemo(() => {
+    return cart.reduce(
+      (accumulator, current) =>
+        accumulator + current.count * current.product.price,
+      0
+    );
+  }, [cart]);
+
   return (
     <div className="container max-w-5xl flex flex-col space-y-4 p-4 my-8">
       <div className="flex flex-col sm:flex-row py-4 shadow-lg rounded-lg bg-white ">
@@ -27,7 +38,7 @@ export function CartSummary() {
           </div>
           <div className="mx-auto">
             <Link
-              to={"/cart/payment"}
+              to="/cart/payment"
               className="mt-auto px-4 py-2 uppercase shadow-md rounded-xl bg-yellow-300 transition hover:bg-yellow-400"
             >
               Procced to checkout

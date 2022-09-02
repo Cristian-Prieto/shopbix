@@ -39,18 +39,18 @@ export function Modal({ toggleModal, addNewCard }) {
   };
 
   const handleCardNumberInputChange = (event) => {
-    event.target.value = normalizeCardNumber(event.target.value);
+    const normalizedCardNumber = normalizeCardNumber(event.target.value);
     setNewCard({
       ...newCard,
-      cardNumber: event.target.value,
+      cardNumber: normalizedCardNumber,
     });
   };
 
   const handleCardSecurityCodeInputChange = (event) => {
-    event.target.value = normalizeSecurityCode(event.target.value);
+    const normalizedSecurityCode = normalizeSecurityCode(event.target.value);
     setNewCard({
       ...newCard,
-      securityCode: event.target.value,
+      securityCode: normalizedSecurityCode,
     });
   };
 
@@ -92,7 +92,7 @@ export function Modal({ toggleModal, addNewCard }) {
       <div
         onClick={toggleModal}
         className="fixed justify-center items-center z-30 inset-0 bg-black bg-opacity-80"
-      ></div>
+      />
       <div
         className={`overflow-hidden fixed w-[calc(100vw-2rem)] sm:w-[600px] z-40 p-4 rounded-lg backdrop-blur-md text-white bg-white/30 transition duration-300 ${modalStyle}`}
       >

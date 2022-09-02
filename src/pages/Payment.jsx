@@ -1,34 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useAppContext } from "../hooks/useAppContext";
-import { Modal } from "./Modal";
+import { Modal } from "../components/Modal";
 import { GrClose } from "react-icons/gr";
 import { getCardType } from "../utils/utils";
 
 const INITIAL_CREDIT_LIST = [
   {
     fullName: "Cristian Prieto",
-    cardNumber: 3323232323,
+    cardNumber: 1111222233334444,
     expirationDate: "2024-12",
   },
   {
     fullName: "Julian Prieto",
-    cardNumber: 42223232323,
+    cardNumber: 5555666677778888,
     expirationDate: "2023-12",
   },
 ];
+
 export function Payment() {
   const { cart } = useAppContext();
   const [list, setList] = useState(INITIAL_CREDIT_LIST);
   const [modal, setModal] = useState(false);
   const [spotlight, setSpotLight] = useState(list[0]);
-  const totalPrice = cart.reduce(
-    (accumulator, current) =>
-      accumulator + current.count * current.product.price,
-    0
+
+  const totalPrice = useMemo(
+    () =>
+      cart.reduce(
+        (accumulator, current) =>
+          accumulator + current.count * current.product.price,
+        0
+      ),
+    [cart]
   );
+
   const toggleModal = () => {
     setModal((prevState) => !prevState);
   };
+
   const addNewCard = (card) => {
     const cardAlreadyExist = list.find(
       (item) => item.cardNumber === card.cardNumber
@@ -37,7 +45,6 @@ export function Payment() {
       setList((prevState) => [...prevState, card]);
       toggleModal();
     }
-    return;
   };
 
   const removeItem = (card) => {
@@ -45,6 +52,7 @@ export function Payment() {
       prevState.filter((item) => item.cardNumber !== card.cardNumber)
     );
   };
+
   useEffect(() => {
     if (modal) {
       document.body.style = "overflow: hidden;";

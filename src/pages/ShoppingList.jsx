@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Pagination } from "./Pagination";
-import { Product } from "./Product";
+import { Pagination } from "../components/Pagination";
+import { Product } from "../components/Product";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -8,21 +8,19 @@ export function ShoppingList() {
   const [productsList, setProductList] = useState([]);
   const [offset, setOffset] = useState(0);
   const [currentPageUrl, setCurrentPageUrl] = useState(
-    `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=10`
+    `${process.env.REACT_APP_SHOPPING_API_URL}/api/v1/products?offset=${offset}&limit=10`
   );
 
   useEffect(() => {
     fetch(currentPageUrl)
       .then((response) => response.json())
-      .then((jsonData) => {
-        setProductList(jsonData);
-      })
-      .catch((err) => console.log(err));
+      .then((jsonData) => setProductList(jsonData))
+      .catch((error) => console.error(error));
   }, [currentPageUrl]);
 
   const nextPage = () => {
     setCurrentPageUrl(
-      `https://api.escuelajs.co/api/v1/products?offset=${
+      `${process.env.REACT_APP_SHOPPING_API_URL}/api/v1/products?offset=${
         offset + ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );
@@ -32,7 +30,7 @@ export function ShoppingList() {
 
   const previousPage = () => {
     setCurrentPageUrl(
-      `https://api.escuelajs.co/api/v1/products?offset=${
+      `${process.env.REACT_APP_SHOPPING_API_URL}/api/v1/products?offset=${
         offset - ITEMS_PER_PAGE
       }&limit=${ITEMS_PER_PAGE}`
     );

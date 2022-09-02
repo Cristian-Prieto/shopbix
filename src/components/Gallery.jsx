@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-/**
- * @images Array of images
- */
-export const Gallery = ({ images }) => {
+export function Gallery({ images }) {
   const [spotlight, setSpotlight] = useState(
     images && images.length && images[0]
   );
@@ -16,7 +13,7 @@ export const Gallery = ({ images }) => {
       <div className="w-full aspect-w-1 aspect-h-1 overflow-hidden ">
         <img
           src={spotlight}
-          alt="blabla"
+          alt="Product"
           className="w-full h-full object-center object-cover"
         />
       </div>
@@ -29,7 +26,7 @@ export const Gallery = ({ images }) => {
           >
             <img
               src={image}
-              alt="blabla"
+              alt="Product"
               className="w-full h-full object-center object-cover"
             />
           </div>
@@ -37,4 +34,4 @@ export const Gallery = ({ images }) => {
       </div>
     </div>
   );
-};
+}

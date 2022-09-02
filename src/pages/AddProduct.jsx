@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const INITIAL_PRODUCT = {
+  title: "",
+  price: 1,
+  description: "",
+  categoryId: 1,
+  images: ["https://placeimg.com/640/480/any"],
+};
+
+const ADD_PRODUCT_URL = `${process.env.REACT_APP_SHOPPING_API_URL}/api/v1/products`;
+
 export function AddProduct() {
-  const INITIAL_PRODUCT = {
-    title: "",
-    price: 1,
-    description: "",
-    categoryId: 1,
-    images: ["https://placeimg.com/640/480/any"],
-  };
   const [newProduct, setNewProduct] = useState(INITIAL_PRODUCT);
 
   const navigate = useNavigate();
@@ -17,10 +20,9 @@ export function AddProduct() {
     setNewProduct({ ...newProduct, [event.target.name]: event.target.value });
   };
 
-  const addProductUrl = "https://api.escuelajs.co/api/v1/products";
   const addNewProduct = (event) => {
     event.preventDefault();
-    fetch(addProductUrl, {
+    fetch(ADD_PRODUCT_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +32,8 @@ export function AddProduct() {
       .then((response) => response.json())
       .then((jsonData) => {
         navigate(`/product/${jsonData.id}`, { replace: true });
-      });
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
